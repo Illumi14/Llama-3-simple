@@ -1,33 +1,11 @@
 import os
 import subprocess
+import webbrowser
 
 os.system("pip install ollama")
 subprocess.call("powershell.exe ollama pull llama3", shell=True) 
 
-with open("OLLAMA_RUN.py", "w") as f:
-    f.write(""" 
-
-import ollama
-
-def again():
-    print("\n")
-    input_question = input("enter a question (or press e to exit): ")
-    if input_question == "e":
-        exit
-    else:
-        stream = ollama.chat(
-            model='llama3',
-            messages=[{'role': 'user', 'content': input_question}],
-            stream=True,
-        )
-
-        for chunk in stream:
-            print(chunk['message']['content'], end='', flush=True)
-        again()
-
-again()
-            
-""")
+webbrowser.open('https://ollama.com/download/OllamaSetup.exe')
 
 
 
